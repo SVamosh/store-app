@@ -16,10 +16,19 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
+        test: /\.m?js$/,
+        enforce: 'pre',
+        use: ['source-map-loader'],
+      },
+      {
         test: /\.css$/, 
         use: ['style-loader', 'css-loader'], 
         exclude: /node_modules/,
       },
+      {
+        test: /\.(gif|svg|jpg|jpeg|png)$/,  
+        use: ["file-loader"]
+      }
     ],
   },
   plugins: [
