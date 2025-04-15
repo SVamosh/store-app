@@ -1,0 +1,50 @@
+
+/* HEADER */
+
+
+.header {
+    min-height: 100px;
+    backdrop-filter: brightness(75%);
+    margin: 0;
+    text-align: right;
+}
+
+.navigation__list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style-type: none;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.logo {
+    font-size: 45px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.navigation__item {
+    text-transform: uppercase;
+}
+
+.navbar__link {
+    text-decoration: none;
+    color: #000000;
+}
+
+.navbar__link:hover {
+    color: #FFFFFF;
+}
+
+.registration-btn {
+    background: transparent;
+    border: none;
+    border-radius: 5px;
+    margin: 15px 55px 5px 0;
+    padding: 3px;
+}
+
+.registration-btn:hover {
+    background-color: rgb(165, 126, 126);
+}
