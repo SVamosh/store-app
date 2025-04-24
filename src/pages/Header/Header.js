@@ -2,17 +2,16 @@
 import './style.css';
 import React, { useState } from 'react'; 
 import { NavLink } from 'react-router-dom';
+import { Button, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, TextField } from '@mui/material';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
-import Dialog from '@mui/material/Dialog';
-import DialogTitle from '@mui/material/DialogTitle';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import TextField from '@mui/material/TextField';
-import DialogActions from '@mui/material/DialogActions';
-import Button from '@mui/material/Button';
+import { handleChange, compareUserData } from './../../services/logFunctions';
 
 function Header() {
     const [open, setOpen] = useState(false);
+    const logIn = localStorage.getItem('logIn');
+    const [userName, setUserName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     const openRegForm = () => {
         setOpen(true);
@@ -22,11 +21,23 @@ function Header() {
         setOpen(false);
     }
 
+    const logOut = () => {
+        localStorage.removeItem('logIn');
+        location.reload();
+    }
+
     return (
         <header className="header">
-            <button className='registration-btn' onClick={openRegForm}>
+            {logIn ? 
+            <button className="registration-btn"
+                onClick={logOut}>
+                {logIn + ' / LOG OUT'}<HowToRegIcon />
+            </button> 
+            : 
+            <button className="registration-btn" 
+                onClick={openRegForm}>
                 LOG IN<HowToRegIcon />
-            </button>
+            </button>}
             <Dialog open={open} onClose={closeRegForm} aria-labelledby="form-registration">
                 <DialogTitle id="form-registration">
                     LOG IN
@@ -36,15 +47,37 @@ function Header() {
                         Log in to shop
                     </DialogContentText>
                     <TextField autoFocus margin="dense"
-                        id="name" label="Your Email"
-                        type="email" fullWidth />
+                        id="name" label="Your Name"
+                        type="name" fullWidth 
+                        onChange={() => handleChange(event, setUserName, userName)}
+                    />
+                    <TextField autoFocus margin="dense"
+                        id="email" label="Your Email"
+                        type="email" fullWidth 
+                        onChange={() => handleChange(event, setEmail, email)}
+                    />
                     <TextField autoFocus margin="dense"
                         id="password" label="Password"
-                        type="password" fullWidth />
+                        type="password" fullWidth 
+                        onChange={() => handleChange(event, setPassword, password)}
+                    />
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={closeRegForm}>Cancel</Button>
-                    <Button>Save</Button>
+                    <div className='log-buttons'>
+                    <Button onClick={closeRegForm}>
+                        <NavLink className="regFormButton" to="/registration">
+                            Registration
+                        </NavLink>
+                    </Button>
+
+                    <Button onClick={() => compareUserData(userName, email, password)}>
+                        Log in
+                    </Button>
+
+                    <Button onClick={closeRegForm}>
+                        Cancel
+                    </Button>
+                    </div>
                 </DialogActions>
             </Dialog>
             <nav className="navigation wrapper">
@@ -56,7 +89,9 @@ function Header() {
                         <NavLink className="navbar__link" to="/about">about us</NavLink>
                     </li>
                     <li className="logo">
-                        <NavLink className="navbar__link" to="/">wear store</NavLink>
+                        <NavLink className="navbar__link" to="/">
+                            wear store
+                        </NavLink>
                     </li>
                     <li className="navigation__item">
                         <NavLink className="navbar__link" to="/delivery">delivery</NavLink>

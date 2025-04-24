@@ -1,0 +1,48 @@
+
+{
+    "listName": "List of registered users",
+    "formed": 2025,
+    "active": true,
+    "users": [
+        {
+            "userName": "Sergey Ivanov",
+            "email": "ivanov68@gmail.com",
+            "password": "sergey69"
+        },
+        {
+            "userName": "Vladimir Novgorodtsev",
+            "email": "novgorodtsev@mail.ru",
+            "password": "vlad30nov"
+        },
+        {
+            "userName": "Tatiana Semenova",
+            "email": "tata94@gmail.com",
+            "password": "tatiana94"
+        },
+        {
+            "userName": "Petr Lisinskiy",
+            "email": "lis1988@mail.ru",
+            "password": "19ptls88"
+        },
+        {
+            "userName": "Oksana Makarova",
+            "email": "makarova_o@gmail.com",
+            "password": "makar1234"
+        },
+        {
+            "userName": "Elena Porubegnaya",
+            "email": "elena64@gmail.com",
+            "password": "elenapor64"
+        },
+        {
+            "userName": "Maksim Ovcharenko",
+            "email": "ovcharenkomax@mail.ru",
+            "password": "maxon1996"
+        },
+        {
+            "userName": "Sergey Lepskiy",
+            "email": "lepsk@gmail.com",
+            "password": "serge999"
+        }        
+    ]
+}
