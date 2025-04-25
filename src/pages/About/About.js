@@ -1,5 +1,5 @@
 
-import "./style.css";
+import './style.css';
 import React from "react";
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TelegramIcon from '@mui/icons-material/Telegram';
@@ -57,4 +57,4 @@ function About() {
   );
 }
 
-export default About;
+export { About };
