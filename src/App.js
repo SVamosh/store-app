@@ -1,13 +1,13 @@
 
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './pages/Header/Header';
-import Catalog from './pages/Catalog/Catalog';
-import About from './pages/About/About';
-import Delivery from './pages/Delivery/Delivery';
-import Main from './pages/Main/Main';
-import Footer from './pages/Footer/Footer';
-import Registration from './pages/Registration/Registration';
+import { Header } from './pages/Header/index';
+import { Catalog } from './pages/Catalog/index';
+import { About } from './pages/About/index';
+import { Delivery } from './pages/Delivery/index';
+import { Main } from './pages/Main/index';
+import { Footer } from './pages/Footer/index';
+import { Registration } from './pages/Registration/index';
 
 function App() {
     

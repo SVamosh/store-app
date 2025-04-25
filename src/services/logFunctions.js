@@ -11,17 +11,20 @@ export const handleChange = (event, setValue, state) => {
     }
 }
 
-export const compareUserData = (userName, email, password) => {
+export const validatePassword = (password) => {
     if (password.length < 8) {
         alert ('password length less than 8 characters');
-    } else {
-        registeredUsers.users.map((user) => {
-            if (user.userName === userName &&
-                user.email === email &&
-                user.password === password) {
-                    localStorage.setItem('logIn', userName);
-                    window.location.assign('http://localhost:9000/');
-            }
-        });
     }
+} 
+
+export const compareUserData = (userName, email, password) => {
+    registeredUsers.users.map((user) => {
+        if (user.userName === userName &&
+            user.email === email &&
+            user.password === password) {
+                localStorage.setItem('logIn', userName);
+                window.location.assign('http://localhost:9000/');
+            }
+        }
+    );
 }

@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Button, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, TextField } from '@mui/material';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
-import { handleChange, compareUserData } from './../../services/logFunctions';
+import { handleChange, compareUserData, validatePassword } from './../../services/logFunctions';
 
 function Header() {
     const [open, setOpen] = useState(false);
@@ -70,7 +70,7 @@ function Header() {
                         </NavLink>
                     </Button>
 
-                    <Button onClick={() => compareUserData(userName, email, password)}>
+                    <Button onClick={() => {validatePassword(password); compareUserData(userName, email, password);}}>
                         Log in
                     </Button>
 
@@ -105,4 +105,4 @@ function Header() {
     );
 }
 
-export default Header;
+export { Header };

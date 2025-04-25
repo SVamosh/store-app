@@ -3,7 +3,7 @@ import './style.css';
 import React, { useState } from 'react';
 import { TextField } from '@mui/material';
 import { Button } from '@mui/material';
-import {handleChange, compareUserData} from './../../services/logFunctions';
+import { handleChange, compareUserData, validatePassword } from './../../services/logFunctions';
 
 function Registration() {
     const [userName, setUserName] = useState('');
@@ -32,11 +32,11 @@ function Registration() {
                 width: 120,
                 marginTop: 5,
             }}
-                onClick={() => compareUserData(userName, email, password)}>
+                onClick={() => {validatePassword(password); compareUserData(userName, email, password);}}>
                     SAVE
             </Button>
         </form>
     );
 }
 
-export default Registration;
+export { Registration };
