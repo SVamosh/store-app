@@ -4,6 +4,7 @@
 .about {
     display: flex;
     justify-content: space-between;
+    gap: 30px;
 }
 
 .about__text {
@@ -38,4 +39,22 @@
 .social-media__list a:hover {
     color: #802580;
     opacity: 0.7;
+}
+
+/* MEDIA */
+
+@media (max-width: 900px) {
+    .about__text {
+        max-width: 350px;
+    }
+}
+
+@media (max-width: 650px) {
+    .about {
+        flex-direction: column;
+    }
+
+    .about__text {
+        max-width: 400px;
+    }
 }
