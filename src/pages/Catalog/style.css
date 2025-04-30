@@ -1,2 +1,41 @@
 
 /* CATALOG */
+
+.catalog {
+    min-height: 500px;
+}
+
+.catalog__info {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.catalog__search {
+    margin-top: 10px;
+    border: 2px solid #000000;
+    border-radius: 5px;
+    outline: none;
+    font-size: 18px;
+}
+
+.catalog__search:hover,
+.catalog__search:focus {
+    border: 2px solid #802580;
+}
+
+.card {
+    margin-top: 20px;
+    position: relative;
+}
+
+.card__description {
+    margin-bottom: 25px;
+}
+
+.card__buttons {
+    position: absolute;
+    bottom: 0;
+}
+
