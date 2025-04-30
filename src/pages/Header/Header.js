@@ -2,13 +2,16 @@
 import './style.css';
 import React, { useState } from 'react'; 
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { Button, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, TextField } from '@mui/material';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { handleChange, compareUserData, validatePassword } from './../../services/logFunctions';
 
 function Header() {
     const [open, setOpen] = useState(false);
     const logIn = localStorage.getItem('logIn');
+    const value = useSelector(state => state.goodsCounter.value);
     const [userName, setUserName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -96,8 +99,12 @@ function Header() {
                     <li className="navigation__item">
                         <NavLink className="navbar__link" to="/delivery">delivery</NavLink>
                     </li>
-                    <li className="navigation__item">
+                    <li className="navigation__item cart">
                         <NavLink className="navbar__link" to="/cart">cart</NavLink>
+                        {logIn && <div className="count">
+                            <ShoppingCartIcon fontSize="small" />
+                            <span>{value}</span>
+                        </div>}
                     </li>
                 </ul>
             </nav>

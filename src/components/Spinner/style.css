@@ -1,0 +1,31 @@
+
+/* SPINNER */
+
+.spinner {
+    margin: 20px auto;
+}
+
+.spinner__header {
+    color: #802580;
+    text-align: center;
+}
+
+.spinner__image {
+    margin: 20px auto;
+    max-width: 600px;
+    max-height: auto;
+}
+
+/* MEDIA */
+
+@media (max-width: 900px) {
+    .spinner__image {
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 650px) {
+    .spinner__image {
+        max-width: 250px;
+    }
+}

@@ -7,6 +7,7 @@ import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { Spinner } from './../../components/Spinner/index';
 import { getApiData } from './../../services/api';
 
 const violetBase = '#802580';
@@ -105,7 +106,8 @@ function Catalog() {
             />
 
             <div className='catalog__info'>
-                {catalog}
+                {isLoading ? <Spinner /> 
+                           : catalog}
             </div>
         </div> 
     );
