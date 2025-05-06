@@ -106,8 +106,7 @@ function Catalog() {
             />
 
             <div className='catalog__info'>
-                {isLoading ? <Spinner /> 
-                           : catalog}
+                {isLoading ? <Spinner /> : catalog}
             </div>
         </div> 
     );

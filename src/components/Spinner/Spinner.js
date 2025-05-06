@@ -1,7 +1,7 @@
 
 import './style.css';
 import React from 'react';
-import waiting from './../../../public/img/spinner/waiting.jpg';
+import { CircularProgress } from '@mui/material';
 
 function Spinner () {
     return (
@@ -9,7 +9,11 @@ function Spinner () {
             <h2 className="spinner__header">
                 The page is loading, please wait!
             </h2>
-            <img className="spinner__image" src={waiting} alt="waiting" />
+            <div className="spinner__image">
+                <CircularProgress size="35px" />
+                <CircularProgress size="45px" />
+                <CircularProgress size="55px" />
+            </div>
         </div>
     );
 }
