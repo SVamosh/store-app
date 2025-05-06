@@ -1,0 +1,16 @@
+
+/* SPINNER */
+
+.spinner {
+    margin: 20px auto;
+    text-align: center;
+}
+
+.spinner__header {
+    color: #802580;
+}
+
+.spinner__image {
+    margin: 60px 0;
+}
+
