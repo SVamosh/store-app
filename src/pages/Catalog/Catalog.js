@@ -1,8 +1,9 @@
 
 import './style.css';
 import React, { useState, useEffect, useMemo } from 'react';
+import { nanoid } from 'nanoid'
 import { useDispatch } from 'react-redux';
-import { increaseGoods } from '../../store/goodsCounterSlice';
+import { addToCart } from '../../store/cartSlice';
 import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -44,9 +45,9 @@ function Catalog() {
         loadCatalog();
     }, []);
 
-    const addToCart = () => {
+    const addProductToCart = (title, price) => {
         if (logIn !== null) {
-            dispatch(increaseGoods());
+            dispatch(addToCart([nanoid(8), title, price]));
         } else {
             alert('To make a purchase, please log in');
         }
@@ -57,7 +58,6 @@ function Catalog() {
             return thing.title.toLowerCase().includes(searchThing.toLowerCase());
         })
     }, [goodsList, searchThing]);
-
 
     const catalog = filteredGoods.map(({id, title, price, description, category, image}) => {
         return <Card className="card" key={id} 
@@ -85,7 +85,7 @@ function Catalog() {
                         </CardContent>
                         <CardActions className="card__buttons">
                             <Button size="small" color="violet"
-                             onClick={addToCart}>
+                             onClick={() => addProductToCart(title, price)}>
                                 BUY <ShoppingCartIcon />
                             </Button>
 
