@@ -13,18 +13,19 @@ const cartSlice = createSlice({
             const [id, title, price] = action.payload;
             state.cart = [...state.cart, action.payload]; 
             state.quantity += 1;
-            state.totalPrice = Number((state.totalPrice + price).toFixed(2));
+            state.totalPrice = parseFloat((state.totalPrice + price).toFixed(2));
         },
 
         removeFromCart: (state, action) => {
-            const itemID = action.payload;
+            const [itemID, price] = action.payload;
             state.quantity -= 1;
             state.cart = state.cart.filter(([id, title, price]) => id !== itemID);
-            state.totalPrice = state.cart.reduce((sum, [id, title, price]) => sum += price, 0);
+            state.totalPrice = parseFloat((state.totalPrice - price).toFixed(2));
         },
 
         clearCart: (state, action) => {
             state.quantity = 0;
+            state.totalPrice = 0;
             state.cart = [];
         }
     }

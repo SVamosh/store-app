@@ -8,6 +8,7 @@ import { Delivery } from './pages/Delivery/index';
 import { Main } from './pages/Main/index';
 import { Footer } from './pages/Footer/index';
 import { Registration } from './pages/Registration/index';
+import { Cart } from './pages/Cart/index';
 
 function App() {
     
@@ -21,6 +22,7 @@ function App() {
                         <Route path="/about" element={ <About /> }/>
                         <Route path="/delivery" element={ <Delivery /> }/>
                         <Route path="/registration" element={ <Registration /> }/>
+                        <Route path="/cart" element={ <Cart /> }/>
                     </Routes>
                 <Footer />
             </Router>
