@@ -11,7 +11,7 @@ import { handleChange, compareUserData, validatePassword } from './../../service
 function Header() {
     const [open, setOpen] = useState(false);
     const logIn = localStorage.getItem('logIn');
-    const value = useSelector(state => state.goodsCounter.value);
+    const value = useSelector(state => state.cart.quantity);
     const [userName, setUserName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
