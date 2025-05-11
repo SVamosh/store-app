@@ -31,10 +31,6 @@
     color: #802580;
 } 
 
-.cart__list {
-    margin: 30px;
-}
-
 .cart__item {
     margin-top: 10px;
     border-bottom: 2px solid #808080;
