@@ -1,24 +1,14 @@
 
 import './style.css';
 import React, { useState, useEffect, useMemo } from 'react';
+import { nanoid } from 'nanoid'
 import { useDispatch } from 'react-redux';
-import { increaseGoods } from '../../store/goodsCounterSlice';
+import { addToCart } from '../../store/cartSlice';
 import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@mui/material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { Spinner } from './../../components/Spinner/index';
 import { getApiData } from './../../services/api';
-
-const violetBase = '#802580';
-
-const theme = createTheme({
-  palette: {
-    violet: {
-      main: violetBase,
-    },
-  },
-});
 
 function Catalog() {
     const [goodsList, setGoodsList] = useState([]);
@@ -44,9 +34,9 @@ function Catalog() {
         loadCatalog();
     }, []);
 
-    const addToCart = () => {
+    const addProductToCart = (title, price) => {
         if (logIn !== null) {
-            dispatch(increaseGoods());
+            dispatch(addToCart([nanoid(8), title, price]));
         } else {
             alert('To make a purchase, please log in');
         }
@@ -58,7 +48,6 @@ function Catalog() {
         })
     }, [goodsList, searchThing]);
 
-
     const catalog = filteredGoods.map(({id, title, price, description, category, image}) => {
         return <Card className="card" key={id} 
                 sx={{ maxWidth: 345 }}>
@@ -67,33 +56,31 @@ function Catalog() {
                         image={image}
                         title={title}
                 />
-                    <ThemeProvider theme={theme}>
-                        <CardContent className="card__description">
-                            <Typography gutterBottom variant="h6" component="div">
-                                {title}
-                            </Typography>
-                            <Typography gutterBottom variant="h6" component="div" color="violet">
-                                Price: {price}$
-                            </Typography>
-                            <Typography gutterBottom component="div">
-                                #{category}
-                            </Typography>
+                    <CardContent className="card__description">
+                        <Typography gutterBottom variant="h6" component="div">
+                            {title}
+                        </Typography>
+                        <Typography gutterBottom variant="h6" component="div" sx={{color: '#802580'}}>
+                            Price: {price}$
+                        </Typography>
+                        <Typography gutterBottom component="div">
+                            #{category}
+                        </Typography>
 
-                            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                                {description}
-                            </Typography>
-                        </CardContent>
-                        <CardActions className="card__buttons">
-                            <Button size="small" color="violet"
-                             onClick={addToCart}>
-                                BUY <ShoppingCartIcon />
-                            </Button>
+                        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                            {description}
+                        </Typography>
+                    </CardContent>
+                    <CardActions className="card__buttons">
+                        <Button size="small" sx={{color: '#802580'}}
+                         onClick={() => addProductToCart(title, price)}>
+                            BUY <ShoppingCartIcon />
+                        </Button>
 
-                            <Button size="small" color="violet">
-                                LIKE <FavoriteBorderIcon />
-                            </Button>
-                        </CardActions>
-                    </ThemeProvider>
+                        <Button size="small" sx={{color: '#802580'}}>
+                            LIKE <FavoriteBorderIcon />
+                        </Button>
+                    </CardActions>
                 </Card>
     }); 
 
