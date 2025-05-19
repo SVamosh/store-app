@@ -15,15 +15,37 @@ function About() {
   const reviewsData = useSelector(state => state.reviews.reviews);
   const [review, setReview] = useState('');
   const logIn = localStorage.getItem('logIn');
+  const mediaListData = [
+    {
+      iconName: <FacebookIcon />,
+      link: '#',
+      text: ' - Facebook',
+    },
+    {
+      iconName: <TelegramIcon />,
+      link: '#',
+      text: ' - Telegram',
+    },
+    {
+      iconName: <InstagramIcon />,
+      link: '#',
+      text: ' - Instagram',
+    },
+    {
+      iconName: <XIcon />,
+      link: '#',
+      text: ' - X(twitter)',
+    },
+  ];
 
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, duration: 35 });
 
   const scrollPrev = useCallback(() => {
-    if (emblaApi) emblaApi.scrollPrev()
+    emblaApi.scrollPrev();
   }, [emblaApi]);
   
   const scrollNext = useCallback(() => {
-    if (emblaApi) emblaApi.scrollNext()
+    emblaApi.scrollNext();
   }, [emblaApi]);
 
   const reviews = reviewsData.map(([userName, review], index) => {
@@ -35,15 +57,28 @@ function About() {
     );
   });
 
+  const mediaList = mediaListData.map(({iconName, link, text}, index) => {
+    return (
+      <li key={index}>
+        <a href={link}>
+          {iconName}
+          {text} 
+        </a>
+      </li>
+    );
+  });
+
   const writeReview = (text) => {
-    (logIn === null) ? alert('Please, log in so you can write reviews')
-                     : setReview(text);
+    (logIn === null) 
+    ? alert('Please, log in so you can write reviews')
+    : setReview(text);
   }
 
   const publishReview = () => {
-    (logIn === null) ? alert('Please, log in so you can publish reviews')
-                     : dispatch(addReview([logIn, review]));
-    document.getElementById('text').value = "";
+    (logIn === null) 
+    ? alert('Please, log in so you can publish reviews')
+    : dispatch(addReview([logIn, review]));
+    setReview('');
   } 
 
   return (
@@ -64,33 +99,7 @@ function About() {
           <h3>For more information you can visit our social media:</h3>
 
           <ul className="social-media__list">
-            <li>
-              <a href="/#">
-                <FacebookIcon />
-                - Facebook
-              </a> 
-            </li>
-
-            <li>
-              <a href="/#">
-                <TelegramIcon />
-                - Telegram
-              </a>
-            </li>
-
-            <li>
-              <a href="/#">
-                <InstagramIcon />
-                - Instagram
-              </a>
-            </li>
-
-            <li>
-              <a href="/#">
-                <XIcon />
-                - X(twitter)
-              </a>
-            </li>
+            {mediaList}
           </ul>
         </div>
       </div>
@@ -111,15 +120,15 @@ function About() {
           <h3>You can leave your review here: </h3>
           <form className="review__form">
             <TextField color="secondary" focused 
-                margin="dense" id="text" 
+                margin="dense" value={review}
                 multiline minRows={6}
                 type="text" fullWidth
                 inputProps={{ maxLength: 200 }}
                 helperText="maximum number of characters - 200"
-                onChange={(evt) => writeReview(evt.target.value)}
+                onChange={(event) => writeReview(event.target.value)}
             />
             <Button className="review__button" sx={{color: '#802580'}}
-             onClick={() => publishReview()}>
+             onClick={publishReview}>
               PUBLISH
             </Button>
           </form>
