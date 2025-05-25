@@ -10,8 +10,8 @@ function UserCart() {
     const cartItems = useSelector(state => state.cart.cart);
 
     const userCart = cartItems.map(([id, title, price]) => {
-        return <li key={id}>
-                    <div className="cart__item">
+        return <li key={id} className="cart__item">
+                    <div>
                         <p>
                             {title + ': ' + price + '$'}
                         </p>

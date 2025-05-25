@@ -3,7 +3,7 @@
 
 .header {
     min-height: 100px;
-    backdrop-filter: brightness(75%);
+    backdrop-filter: brightness(15%);
     margin: 0;
     text-align: right;
 }
@@ -29,14 +29,15 @@
 
 .navbar__link {
     text-decoration: none;
-    color: #000000;
+    color: #c0c0c0;
 }
 
 .navbar__link:hover {
     color: #FFFFFF;
-}
+} 
 
 .registration-btn {
+    color: #c0c0c0;
     background: transparent;
     border: none;
     border-radius: 5px;
@@ -45,7 +46,7 @@
 }
 
 .registration-btn:hover {
-    background-color: rgb(165, 126, 126);
+    background-color: #802580;
 }
 
 .regFormButton {
