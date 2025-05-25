@@ -3,7 +3,8 @@
 
 .cart {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .cart__info {
@@ -27,6 +28,10 @@
     padding-bottom: 5px;
 }
 
+.cart__user p {
+    color: #000000;
+}
+
 .cart__header {
     color: #802580;
 } 
@@ -34,10 +39,12 @@
 .cart__item {
     margin-top: 10px;
     border-bottom: 2px solid #808080;
+    color: #000000;
 }
 
 .cart__price {
     margin: 10px;
+    color: #000000;
 }
 
 .cart__order {
@@ -51,8 +58,11 @@
     text-decoration: none;
 }
 
+.orders__list {
+    margin-top: 30px;
+}
 
-.order__button {
+.orders__link {
     text-decoration: none;
 }
 

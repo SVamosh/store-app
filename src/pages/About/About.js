@@ -119,13 +119,14 @@ function About() {
         <div className="user__review">
           <h3>You can leave your review here: </h3>
           <form className="review__form">
-            <TextField color="secondary" focused 
-                margin="dense" value={review}
-                multiline minRows={6}
-                type="text" fullWidth
-                inputProps={{ maxLength: 200 }}
-                helperText="maximum number of characters - 200"
-                onChange={(event) => writeReview(event.target.value)}
+            <TextField color="secondary" focused
+              sx={{backgroundColor: '#FFFFFF', borderRadius: '4px'}}
+              margin="dense" value={review}
+              multiline minRows={6}
+              type="text" fullWidth
+              inputProps={{ maxLength: 200 }}
+              helperText="maximum number of characters - 200"
+              onChange={(event) => writeReview(event.target.value)}
             />
             <Button className="review__button" sx={{color: '#802580'}}
              onClick={publishReview}>

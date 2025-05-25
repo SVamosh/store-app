@@ -7,6 +7,7 @@ import { Button, Dialog, DialogTitle, DialogContent, DialogContentText, DialogAc
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { handleChange, compareUserData, validatePassword } from './../../services/logFunctions';
+import { ThemeSwitcher } from './../../components/ThemeSwitcher';
 
 function Header() {
     const [open, setOpen] = useState(false);
@@ -31,6 +32,7 @@ function Header() {
 
     return (
         <header className="header">
+            <ThemeSwitcher />
             {logIn ? 
             <button className="registration-btn"
                 onClick={logOut}>
