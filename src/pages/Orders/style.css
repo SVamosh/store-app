@@ -1,0 +1,15 @@
+
+/* ORDERS */
+
+.orders {
+    min-height: 600px;
+    margin-top: 20px;
+}
+
+.orders__header {
+    margin-bottom: 30px;
+}
+
+.orders__list-item {
+    margin-top: 10px;
+}
