@@ -39,3 +39,25 @@
     bottom: 0;
 }
 
+.catalog__systematization {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.filter__button:focus {
+    color: #00FFFF;
+}
+
+.sorting__item {
+    font-style: italic;
+}
+
+/* MEDIA */
+
+@media (max-width: 650px) {
+    .catalog__systematization {
+        flex-direction: column;
+    }
+}
+
