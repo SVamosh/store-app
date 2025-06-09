@@ -8,6 +8,7 @@ import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { Spinner } from './../../components/Spinner/index';
+import { goodsCategories } from '../../services/goodsCategories';
 import { getApiData } from './../../services/api';
 
 function Catalog() {
