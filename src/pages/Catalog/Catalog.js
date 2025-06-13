@@ -1,19 +1,34 @@
 
+
 import './style.css';
 import React, { useState, useEffect, useMemo } from 'react';
 import { nanoid } from 'nanoid'
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../store/cartSlice';
-import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@mui/material';
+import { 
+    Card, 
+    CardActions, 
+    CardContent, 
+    CardMedia, 
+    Button, 
+    Typography, 
+    Box, 
+    InputLabel, 
+    MenuItem, 
+    FormControl, 
+    Select } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { Spinner } from './../../components/Spinner/index';
+import { goodsCategories } from '../../services/goodsCategories';
 import { getApiData } from './../../services/api';
 
 function Catalog() {
     const [goodsList, setGoodsList] = useState([]);
+    const [filteredAndSortedList, setFilteredAndSortedList] = useState([]);
     const [isLoading, setLoading] = useState(false);
     const [searchThing, setSearchThing] = useState('');
+    const [sorting, setSorting] = useState('');
     const dispatch = useDispatch();
     const logIn = localStorage.getItem('logIn');
 
@@ -23,6 +38,7 @@ function Catalog() {
                 setLoading(true);
                 const goods = await getApiData();
                 setGoodsList(goods);
+                setFilteredAndSortedList(goods);
                 setLoading(false);
             } catch (error) {
                 console.log(error.name + ': ' + error.message);
@@ -42,13 +58,41 @@ function Catalog() {
         }
     }
 
-    const filteredGoods = useMemo(() => {
-        return goodsList.filter(thing => {
+    const chooseCategory = (category) => {
+        if (category === 'all categories') {
+            setFilteredAndSortedList(goodsList)
+        } else {
+            setFilteredAndSortedList(goodsList.filter(item => item.category === category));
+        }
+    }
+
+    const filterButtons = goodsCategories.map(({index, category}) => {
+        return (
+            <Button key={index} id={index} sx={{color: '#FF7F50'}} className="filter__button"
+             onClick={() => chooseCategory(category)}>
+                {category}
+            </Button>
+        );
+    });
+
+    useMemo(() => {
+        const copy = [...filteredAndSortedList];
+        if (sorting === 'ascending') {
+            setFilteredAndSortedList(copy.sort((a, b) => a.price - b.price));
+        } else if (sorting === 'descending') {
+            setFilteredAndSortedList(copy.sort((a, b) => b.price - a.price));
+        } else if (sorting === '') {
+            setFilteredAndSortedList(goodsList);
+        }
+    }, [sorting]);
+
+    const changedData = useMemo(() => {
+        return filteredAndSortedList.filter(thing => {
             return thing.title.toLowerCase().includes(searchThing.toLowerCase());
         })
-    }, [goodsList, searchThing]);
+    }, [filteredAndSortedList, searchThing]);
 
-    const catalog = filteredGoods.map(({id, title, price, description, category, image}) => {
+    const catalog = changedData.map(({id, title, price, description, category, image}) => {
         return <Card className="card" key={id} 
                 sx={{ maxWidth: 345 }}>
                     <CardMedia
@@ -91,6 +135,43 @@ function Catalog() {
              value={searchThing}
              placeholder="enter the name of thing"
             />
+
+            <div className="catalog__systematization">
+                <div className="catalog__sorting">
+                    <Box sx={{ minWidth: 240, backgroundColor: '#FFFFFF' }}>
+                        <FormControl fullWidth>
+                            <InputLabel color="warning" id="demo-simple-select-label">
+                                Sort Goods
+                            </InputLabel>
+                            <Select
+                                labelId="demo-simple-label"
+                                id="demo-simple-select"
+                                value={sorting}
+                                label="Sort Goods"
+                                onChange={(event) => setSorting(event.target.value)}
+                                color="warning"
+                            >
+                                <MenuItem className="sorting__item" 
+                                 value="">
+                                    WITHOUT SORTING
+                                </MenuItem>
+                                <MenuItem className="sorting__item" 
+                                 value={'ascending'}>
+                                    ASCENDING PRICE
+                                </MenuItem>
+                                <MenuItem className="sorting__item" 
+                                 value={'descending'}>
+                                    DESCENDING PRICE
+                                </MenuItem>
+                            </Select>
+                        </FormControl>
+                    </Box>
+                </div>
+
+                <div className="catalog__filtration">
+                    {filterButtons}
+                </div>
+            </div>
 
             <div className='catalog__info'>
                 {isLoading ? <Spinner /> : catalog}
