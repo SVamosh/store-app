@@ -14,6 +14,7 @@
 
 .catalog__search {
     margin-top: 10px;
+    margin-left: 10px;
     border: 2px solid #000000;
     border-radius: 5px;
     outline: none;
@@ -39,12 +40,6 @@
     bottom: 0;
 }
 
-.catalog__systematization {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-
 .filter__button:focus {
     color: #00FFFF;
 }
@@ -52,12 +47,3 @@
 .sorting__item {
     font-style: italic;
 }
-
-/* MEDIA */
-
-@media (max-width: 650px) {
-    .catalog__systematization {
-        flex-direction: column;
-    }
-}
-
